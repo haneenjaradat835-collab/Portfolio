@@ -1,0 +1,97 @@
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+.parallax {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100vh;
+
+  h1 {
+    font-size: 100px;
+    color: #fff;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 20px;
+    line-height: 1.2;
+
+    @include respond-to("tablet") {
+      font-size: 60px;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 36px;
+      padding: 15px;
+    }
+  }
+
+  .mountains {
+    background-image: url("/mountains.png");
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+
+    @include respond-to("mobile") {
+      background-attachment: scroll;
+    }
+  }
+
+  .plants {
+    background-image: url("/planets.png");
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+
+    @include respond-to("mobile") {
+      background-attachment: scroll;
+    }
+  }
+
+  .stars {
+    background-image: url("/stars.png");
+    background-size: cover;
+    background-position: bottom;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    animation: moveStars 60s linear infinite;
+
+    @include respond-to("mobile") {
+      animation: moveStars 40s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 4000px 2000px;
+      }
+    }
+  }
+}

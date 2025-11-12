@@ -1,0 +1,64 @@
+// Responsive breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$large: 1440px;
+
+// Mixin for media queries
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: $mobile) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: $tablet) {
+      @content;
+    }
+  } @else if $breakpoint == "desktop" {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  } @else if $breakpoint == "large" {
+    @media (min-width: $large) {
+      @content;
+    }
+  }
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Cairo";
+}
+
+body {
+  background-color: #0c0c1d;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  height: 100vh;
+  scroll-snap-align: center;
+
+  @include respond-to("mobile") {
+    height: auto;
+    min-height: 100vh;
+    scroll-snap-align: start;
+  }
+
+  @include respond-to("tablet") {
+    height: auto;
+    min-height: 100vh;
+  }
+}

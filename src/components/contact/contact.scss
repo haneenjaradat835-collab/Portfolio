@@ -1,0 +1,223 @@
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+.contact {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  color: antiquewhite;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 40px 0;
+
+  @include respond-to("tablet") {
+    width: 90%;
+    flex-direction: column;
+    gap: 40px;
+    padding: 60px 20px;
+  }
+
+  @include respond-to("mobile") {
+    width: 95%;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 15px;
+    font-size: 16px;
+  }
+
+  .form-container {
+    width: 100%;
+    flex: 1;
+
+    @include respond-to("tablet") {
+      width: 100%;
+    }
+
+    @include respond-to("mobile") {
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      width: 90%;
+      border: 1px solid #ffffff9f;
+      margin: 20px;
+      background-color: transparent;
+      padding: 10px;
+      color: #fff;
+      font-family: "Cairo";
+      transition: all 0.3s ease;
+
+      @include respond-to("tablet") {
+        width: 100%;
+        margin: 15px 0;
+        padding: 12px;
+      }
+
+      @include respond-to("mobile") {
+        width: 100%;
+        margin: 12px 0;
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #61408f;
+        background-color: rgba(97, 64, 143, 0.1);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 150px;
+
+      @include respond-to("mobile") {
+        min-height: 120px;
+      }
+    }
+
+    button[type="submit"] {
+      width: 90%;
+      padding: 15px;
+      border: 1px solid #ffffff9f;
+      margin: 20px;
+      background-color: #61408f;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+
+      @include respond-to("tablet") {
+        width: 100%;
+        margin: 15px 0;
+      }
+
+      @include respond-to("mobile") {
+        width: 100%;
+        margin: 12px 0;
+        padding: 12px;
+      }
+
+      &:hover {
+        background-color: #8df0cc;
+        color: #0c0c1d;
+        border-color: #8df0cc;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .text-container {
+    width: 100%;
+    flex: 1;
+
+    @include respond-to("tablet") {
+      width: 100%;
+    }
+
+    @include respond-to("mobile") {
+      width: 100%;
+    }
+
+    h3 {
+      font-size: 45px;
+      color: #61408f;
+      margin-bottom: 30px;
+
+      @include respond-to("tablet") {
+        font-size: 35px;
+        margin-bottom: 25px;
+      }
+
+      @include respond-to("mobile") {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .contact-list {
+      list-style: none;
+
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 15px 10px;
+        font-size: 18px;
+        transition: transform 0.3s ease;
+
+        @include respond-to("tablet") {
+          margin: 15px 0;
+          font-size: 16px;
+        }
+
+        @include respond-to("mobile") {
+          margin: 12px 0;
+          font-size: 14px;
+        }
+
+        &:hover {
+          transform: translateX(10px);
+        }
+
+        i {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 10px;
+          margin-right: 15px;
+          color: #61408f;
+          font-size: 25px;
+          border: 1px solid #fff;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+
+          @include respond-to("tablet") {
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            margin-right: 12px;
+          }
+
+          @include respond-to("mobile") {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            margin-right: 10px;
+          }
+        }
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          flex: 1;
+
+          &:hover {
+            color: #8df0cc;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

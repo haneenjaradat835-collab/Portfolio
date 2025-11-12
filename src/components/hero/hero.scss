@@ -1,0 +1,205 @@
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+.hero {
+  height: calc(100vh - 100px);
+  background: linear-gradient(180deg, #0c0c1d, #111132);
+  overflow: hidden;
+  position: relative;
+
+  @include respond-to("tablet") {
+    height: auto;
+    min-height: calc(100vh - 80px);
+    padding: 40px 0;
+  }
+
+  @include respond-to("mobile") {
+    height: auto;
+    min-height: 100vh;
+    padding: 30px 0;
+  }
+
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    width: 50%;
+    gap: 15px;
+    height: 100%;
+    margin-left: 100px;
+
+    @include respond-to("tablet") {
+      width: 100%;
+      margin-left: 0;
+      padding: 40px 20px;
+      gap: 20px;
+    }
+
+    @include respond-to("mobile") {
+      width: 100%;
+      padding: 30px 15px;
+      gap: 15px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 55px;
+      line-height: 1.2;
+
+      @include respond-to("tablet") {
+        font-size: 40px;
+      }
+
+      @include respond-to("mobile") {
+        font-size: 28px;
+      }
+    }
+
+    h3 {
+      color: #5555a3;
+      font-size: 30px;
+      letter-spacing: 5px;
+
+      @include respond-to("tablet") {
+        font-size: 22px;
+        letter-spacing: 3px;
+      }
+
+      @include respond-to("mobile") {
+        font-size: 16px;
+        letter-spacing: 2px;
+      }
+    }
+
+    p {
+      width: 50%;
+
+      @include respond-to("tablet") {
+        width: 100%;
+        max-width: 500px;
+      }
+
+      @include respond-to("mobile") {
+        width: 100%;
+        max-width: 100%;
+        font-size: 14px;
+      }
+    }
+
+    .buttonBar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      @include respond-to("tablet") {
+        gap: 15px;
+      }
+
+      @include respond-to("mobile") {
+        gap: 10px;
+        width: 100%;
+      }
+
+      button {
+        padding: 7px 25px;
+        border: 2px solid #fff;
+        background-color: transparent;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 5px;
+        cursor: grab;
+        transition: all 0.3s ease;
+
+        @include respond-to("tablet") {
+          padding: 6px 20px;
+          font-size: 16px;
+        }
+
+        @include respond-to("mobile") {
+          padding: 8px 16px;
+          font-size: 14px;
+          width: 100%;
+          max-width: 200px;
+        }
+
+        &:first-child {
+          &:hover {
+            background-color: #fff;
+            color: #0c0c1d;
+          }
+        }
+
+        &:last-child {
+          background-color: #fff;
+          color: #000;
+
+          &:hover {
+            background-color: #e0e0e0;
+          }
+        }
+      }
+    }
+  }
+
+  .imgContainer {
+    height: 90%;
+    position: absolute;
+    right: 0;
+    top: 80px;
+
+    @include respond-to("tablet") {
+      position: relative;
+      height: 300px;
+      right: auto;
+      top: auto;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    @include respond-to("mobile") {
+      height: 250px;
+    }
+
+    img {
+      height: 100%;
+      object-fit: contain;
+
+      @include respond-to("tablet") {
+        height: 100%;
+        width: auto;
+        max-width: 80%;
+      }
+    }
+  }
+
+  .slidingTextContainer {
+    position: absolute;
+    font-size: 50vh;
+    bottom: -120px;
+    white-space: nowrap;
+    color: #ffffff09;
+
+    @include respond-to("tablet") {
+      font-size: 20vh;
+      bottom: -50px;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 12vh;
+      bottom: -30px;
+    }
+  }
+}

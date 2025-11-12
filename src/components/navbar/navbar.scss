@@ -1,0 +1,104 @@
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "mobile" {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == "tablet" {
+    @media (max-width: 768px) {
+      @content;
+    }
+  }
+}
+
+.navbar {
+  height: 100px;
+  background: #0c0c1d;
+  color: white;
+  position: relative;
+  z-index: 100;
+
+  @include respond-to("mobile") {
+    height: 80px;
+  }
+
+  .wrapper {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    background: #0c0c1d;
+
+    @include respond-to("tablet") {
+      max-width: 90%;
+    }
+
+    @include respond-to("mobile") {
+      max-width: 95%;
+    }
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 35px;
+    margin: auto 0px;
+    display: flex;
+    align-items: center;
+
+    @include respond-to("tablet") {
+      font-size: 28px;
+    }
+
+    @include respond-to("mobile") {
+      font-size: 24px;
+    }
+
+    svg {
+      position: absolute;
+      z-index: 1000;
+      margin: 8px 5px;
+      width: 50px;
+      height: 50px;
+
+      @include respond-to("mobile") {
+        width: 35px;
+        height: 35px;
+        margin: 5px 3px;
+      }
+    }
+  }
+
+  .social {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    @include respond-to("tablet") {
+      gap: 10px;
+    }
+
+    @include respond-to("mobile") {
+      display: none;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      background-color: white;
+      padding: 5px;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+
+      @include respond-to("tablet") {
+        width: 25px;
+        height: 25px;
+        padding: 4px;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+}
